@@ -124,8 +124,11 @@ export interface GetVisitorsRequest extends Hapi.Request {
     filter?: {
       age?: [number, number]
       gender?: GenderEnum
-      visitActivity?: string
       name?: string
+      email?: string
+      postCode?: string
+      phoneNumber?: string
+      visitActivity?: string
     }
     visits: boolean
   };
