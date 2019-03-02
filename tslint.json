@@ -1,6 +1,7 @@
 {
     "extends": "tslint-config-twine",
     "rules": {
-        "variable-name": ["allow-leading-underscore"]
+        "variable-name": ["allow-leading-underscore"],
+        "no-increment-decrement": false
     }
 }
