@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as Knex from 'knex';
 import { tap } from 'ramda';
 import { getConfig, Environment } from '../config';
-import { lazyPromiseSeries } from '../src/utils';
+import { Promises } from '../util';
 import { write } from './utils';
 
 
@@ -69,7 +69,7 @@ export const migrate = {
       );
 
     await _client.transaction((trx) =>
-      lazyPromiseSeries(queries.map((q: Knex.QueryBuilder) => q.transacting(trx)))
+      Promises.series(queries.map((q: Knex.QueryBuilder) => q.transacting(trx)))
         .then(trx.commit)
         .catch(trx.rollback)
     );

@@ -3,7 +3,7 @@
  */
 import * as path from 'path';
 import { mergeDeepRight } from 'ramda';
-import { toDataUrl, isDataUrl } from '../../../utils';
+import { toDataUrl, isDataUrl } from '../util';
 import { getConfig } from '../../../../config';
 import { PdfTemplateDefinition } from '../types';
 

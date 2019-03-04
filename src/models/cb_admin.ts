@@ -7,7 +7,7 @@ import { Users, ModelToColumn } from './user';
 import { RoleEnum } from '../auth/types';
 import { applyQueryModifiers } from './applyQueryModifiers';
 import { Roles } from '../auth';
-import { randomPasswordGenerator } from '../utils';
+import { Random } from '../../util';
 
 
 /*
@@ -80,7 +80,7 @@ export const CbAdmins: CbAdminCollection = {
     const count = latestTempCbAdmin ? Number(latestTempCbAdmin.email.match(/\d+/)) : 0;
     const email = `welcome-${count + 1}@twine-together.com`;
     const name = 'TEMPORARY ADMIN USER';
-    const password = randomPasswordGenerator();
+    const password = Random.password();
     const newUser = await client.transaction(async (trx) => {
       const newUser = await Users.add(trx, { name, email, isTemp: true });
       await Roles.add(trx, { role: RoleEnum.CB_ADMIN, userId: newUser.id, organisationId: cb.id });

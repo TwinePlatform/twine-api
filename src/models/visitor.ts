@@ -2,7 +2,7 @@
  * Visitor Model
  */
 import { createHmac, randomBytes } from 'crypto';
-import { assoc, omit, pick, evolve, compose, pipe, filter } from 'ramda';
+import { assoc, omit, pick, evolve, compose, pipe, filter, map } from 'ramda';
 import { Map } from '../types/internal';
 import { User, VisitorCollection, LinkedVisitEvent } from './types';
 import { Users, ModelToColumn } from './user';
@@ -10,7 +10,8 @@ import { RoleEnum } from '../auth/types';
 import { applyQueryModifiers } from './applyQueryModifiers';
 import { getConfig } from '../../config';
 import * as QRCode from '../services/qrcode';
-import { ageArrayToBirthYearArray, pickOrAll } from '../utils';
+import { Age } from '../models/util';
+import { Objects } from '../../util';
 import { Roles } from '../auth';
 
 
@@ -109,7 +110,7 @@ export const Visitors: VisitorCollection = {
     const query = evolve({
       where: Visitors.toColumnNames,
       whereNot: Visitors.toColumnNames,
-      whereBetween: pipe(evolve({ birthYear: ageArrayToBirthYearArray }), Visitors.toColumnNames),
+      whereBetween: pipe(evolve({ birthYear: map(Age.toBirthYear) }), Visitors.toColumnNames),
       whereNotBetween: Visitors.toColumnNames,
     }, q);
 
@@ -147,7 +148,7 @@ export const Visitors: VisitorCollection = {
     const query = evolve({
       where: Visitors.toColumnNames,
       whereNot: Visitors.toColumnNames,
-      whereBetween: pipe(evolve({ birthYear: ageArrayToBirthYearArray }), Visitors.toColumnNames),
+      whereBetween: pipe(evolve({ birthYear: map(Age.toBirthYear) }), Visitors.toColumnNames),
     }, q);
 
     const additionalColumnMap: Map<keyof LinkedVisitEvent, string> = {
@@ -164,7 +165,7 @@ export const Visitors: VisitorCollection = {
       client
         .select({
           id: 'user_account.user_account_id',
-          ...pickOrAll(query.fields, ModelToColumn),
+          ...Objects.pickOrAll(query.fields, ModelToColumn),
         })
         .from('user_account')
         .leftOuterJoin('gender', 'user_account.gender_id', 'gender.gender_id')
@@ -200,7 +201,7 @@ export const Visitors: VisitorCollection = {
     ));
 
     return rows.map((row: Partial<User>, idx) => {
-      const user: Partial<User> = pickOrAll(query.fields, row);
+      const user: Partial<User> = Objects.pickOrAll(query.fields, row);
       return ({ ...user, visits: userVisits[idx] });
     });
   },
