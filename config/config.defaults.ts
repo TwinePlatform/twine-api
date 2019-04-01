@@ -6,7 +6,7 @@
  */
 import * as path from 'path';
 import { Environment, Config } from './types';
-import { DeepPartial } from '../src/types/internal';
+import { DeepPartial } from '../src/types/util';
 
 const config: DeepPartial<Config> = {
   root: path.resolve(__dirname, '..'),

@@ -3,7 +3,7 @@
  */
 import * as Knex from 'knex';
 import { compose, omit, evolve, filter, pick, invertObj } from 'ramda';
-import { Map } from '../types/internal';
+import { Map } from '../types';
 import { Organisation, OrganisationCollection, OrganisationRow, } from './types';
 import { applyQueryModifiers } from './applyQueryModifiers';
 import { Users } from './user';

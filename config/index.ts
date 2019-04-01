@@ -13,7 +13,7 @@ import configTesting from './config.testing';
 import configStaging from './config.staging';
 import configProduction from './config.production';
 import { Config, Environment } from './types';
-import { DeepPartial } from '../src/types/internal';
+import { DeepPartial } from '../src/types/util';
 
 
 declare module 'knex' {

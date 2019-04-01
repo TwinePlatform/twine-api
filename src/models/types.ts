@@ -2,7 +2,7 @@
  * Type declarations for the models
  */
 import * as Knex from 'knex';
-import { Maybe, Dictionary, Float, Int, Omit, Map } from '../types/internal';
+import { Maybe, Dictionary, Float, Int, Omit, Map } from '../types';
 import { RoleEnum } from '../auth/types';
 
 /*

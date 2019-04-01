@@ -1,5 +1,5 @@
 import { Environment, Config } from './types';
-import { DeepPartial } from '../src/types/internal';
+import { DeepPartial } from '../src/types/util';
 
 
 const config: DeepPartial<Config> = {

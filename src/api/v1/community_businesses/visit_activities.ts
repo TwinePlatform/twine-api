@@ -10,7 +10,7 @@ import {
   id,
   visitActivitiesGetQuery } from './schema';
 import { VisitActivity } from '../../../models/types';
-import { Day } from '../../../types/internal';
+import { Day } from '../../../types/util';
 
 interface GetRequest extends Hapi.Request {
   query: {

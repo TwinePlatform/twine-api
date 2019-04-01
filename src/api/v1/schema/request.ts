@@ -12,7 +12,7 @@
 import * as Joi from 'joi';
 import * as moment from 'moment';
 import { Dictionary } from 'ramda';
-import { Map } from '../../../types/internal';
+import { Map } from '../../../types/util';
 
 /*
  * Types

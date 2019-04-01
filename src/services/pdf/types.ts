@@ -1,6 +1,6 @@
 import * as PdfMake from 'pdfmake/build/pdfmake';
 import { Dictionary } from 'ramda';
-import { ValueOf } from '../../types/internal';
+import { ValueOf } from '../../types';
 
 
 export enum PdfTemplateEnum {

@@ -1,4 +1,4 @@
-import { AppEnum } from '../../types/internal';
+import { AppEnum } from '../../types/util';
 
 
 export enum EmailTemplate {

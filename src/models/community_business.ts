@@ -16,7 +16,7 @@ import {
   identity,
 } from 'ramda';
 import { randomBytes } from 'crypto';
-import { Dictionary, Map } from '../types/internal';
+import { Dictionary, Map } from '../types/util';
 import {
   CommunityBusiness,
   CommunityBusinessCollection,

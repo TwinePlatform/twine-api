@@ -9,7 +9,7 @@ import {
 } from './schema';
 import { Templates } from '../../../services/email';
 import { BoomWithValidation } from '../utils';
-import { AppEnum } from '../../../types/internal';
+import { AppEnum } from '../../../types/util';
 
 
 interface ForgotPasswordRequest extends Hapi.Request {

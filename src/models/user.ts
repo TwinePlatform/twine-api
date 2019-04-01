@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { compose, omit, filter, pick, invertObj, evolve } from 'ramda';
 import { randomBytes } from 'crypto';
 import { hash, compare } from 'bcrypt';
-import { Map } from '../types/internal';
+import { Map } from '../types/util';
 import {
   User,
   UserRow,

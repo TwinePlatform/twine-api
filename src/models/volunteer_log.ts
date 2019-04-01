@@ -4,7 +4,7 @@ import { VolunteerLog, VolunteerLogCollection } from './types';
 import { CommunityBusinesses } from './community_business';
 import { applyQueryModifiers } from './applyQueryModifiers';
 import { Objects } from '../../util';
-import { Map, Dictionary } from '../types/internal';
+import { Map, Dictionary } from '../types';
 import Duration from './duration';
 import Roles from '../auth/roles';
 import { RoleEnum } from '../auth/types';

@@ -3,7 +3,7 @@
  */
 import { createHmac, randomBytes } from 'crypto';
 import { assoc, omit, pick, evolve, compose, pipe, filter, map } from 'ramda';
-import { Map } from '../types/internal';
+import { Map } from '../types/util';
 import { User, VisitorCollection, LinkedVisitEvent } from './types';
 import { Users, ModelToColumn } from './user';
 import { RoleEnum } from '../auth/types';

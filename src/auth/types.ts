@@ -1,6 +1,6 @@
 import * as Knex from 'knex';
 import { Dictionary } from 'ramda';
-import { Omit } from '../types/internal';
+import { Omit } from '../types/util';
 
 
 /*
