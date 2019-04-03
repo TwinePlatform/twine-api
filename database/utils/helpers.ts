@@ -2,13 +2,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as Knex from 'knex';
 import { compose, head } from 'ramda';
+import { File } from '../../util';
 
 const MIGRATIONS_BASE_PATH = path.resolve(__dirname, '..', 'migrations');
 
-const readFile = (fpath: string) => fs.readFileSync(fpath, 'utf8');
-
 export const buildQuery = (path: string) =>
-  (knex: Knex) => compose((s) => knex.raw(s), readFile)(path);
+  (knex: Knex) => compose((s) => knex.raw(s), File.sync.read)(path);
 
 export const buildPath = (fname: string) =>
   head(fname
@@ -19,4 +18,4 @@ export const buildPath = (fname: string) =>
 
 export const buildQueryFromFile = compose(buildQuery, buildPath);
 
-export const write = (fpath: string, data: string) => fs.writeFileSync(fpath, data, { flag: 'wx' });
+export const write = File.sync.write;
