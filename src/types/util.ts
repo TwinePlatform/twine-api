@@ -21,21 +21,3 @@ export type DeepPartial<T> = {
         ? ReadonlyArray<DeepPartial<U>>
         : DeepPartial<T[P]>
 };
-
-
-export type Day =
-  'monday'
-  | 'tuesday'
-  | 'wednesday'
-  | 'thursday'
-  | 'friday'
-  | 'saturday'
-  | 'sunday';
-
-export enum AppEnum {
-  TWINE_API = 'TWINE_API',
-  VISITOR = 'VISITOR_APP',
-  VOLUNTEER = 'VOLUNTEER_APP',
-  DASHBOARD = 'DASHBOARD_APP',
-  ADMIN = 'ADMIN_APP',
-}

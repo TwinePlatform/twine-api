@@ -1,6 +1,13 @@
 import * as Knex from 'knex';
-const perms = require('../seeds/permissions.seed.json');
+import { Map } from '../../src/types';
+import { RoleEnum } from '../../src/auth';
+const perms: PermissionsJsonConfig = require('../seeds/permissions.seed.json');
 
+
+type PermissionsJsonConfig = {
+  permissions: string[]
+  permissionsForRoles: Map<RoleEnum, string[]>
+};
 
 const rx = new RegExp('[-:]');
 
@@ -15,21 +22,21 @@ const scopeToPermission = (permission: string) => {
 
 const accessRolePermissionsRows = (client: Knex) =>
   Object.entries(perms.permissionsForRoles)
-  .reduce((acc, [role, permissions]: [string, string[]]) => {
-    const rows = Array.from(permissions)
-    .map((x) => ({
-      access_role_id: client('access_role')
-        .select('access_role_id')
-        .where({ access_role_name: role }),
-      permission_id: client('permission')
-        .select('permission_id')
-        .where(scopeToPermission(x)),
-    }));
+    .reduce((acc, [role, permissions]) => {
+      const rows = permissions
+        .map((x) => ({
+          access_role_id: client('access_role')
+            .select('access_role_id')
+            .where({ access_role_name: role }),
+          permission_id: client('permission')
+            .select('permission_id')
+            .where(scopeToPermission(x)),
+        }));
 
-    return [...acc, ...rows];
-  }, []);
+      return [...acc, ...rows];
+    }, [] as { access_role_id: Knex.QueryBuilder, permission_id: Knex.QueryBuilder}[]);
 
-const permissionRows = Array.from(perms.permissions).map(scopeToPermission);
+const permissionRows = perms.permissions.map(scopeToPermission);
 
 export {
   permissionRows,
